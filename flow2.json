@@ -1,0 +1,126 @@
+[
+    {
+        "id": "7b2c93e653da30eb",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "# estoy empezndo a leer desde Node mis datos de mosquitto\n\n",
+        "env": []
+    },
+    {
+        "id": "4caaeaf1a4a11372",
+        "type": "mqtt in",
+        "z": "7b2c93e653da30eb",
+        "name": "",
+        "topic": "pruebas",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "3cb8ad499cc92cca",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "bd0c45b94c026df4"
+            ]
+        ]
+    },
+    {
+        "id": "bd0c45b94c026df4",
+        "type": "json",
+        "z": "7b2c93e653da30eb",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 450,
+        "y": 120,
+        "wires": [
+            [
+                "a24a902aa9d38e61"
+            ]
+        ]
+    },
+    {
+        "id": "e9f91704497a13fb",
+        "type": "ui_text",
+        "z": "7b2c93e653da30eb",
+        "group": "dd70abe0.14cb38",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 930,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a24a902aa9d38e61",
+        "type": "function",
+        "z": "7b2c93e653da30eb",
+        "name": "informacion",
+        "func": "msg.payload=msg.payload.id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 80,
+        "wires": [
+            [
+                "e9f91704497a13fb"
+            ]
+        ]
+    },
+    {
+        "id": "3cb8ad499cc92cca",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "mohamed-1235",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dd70abe0.14cb38",
+        "type": "ui_group",
+        "name": "OS",
+        "tab": "6d54a11.6b2c0e",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "6d54a11.6b2c0e",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
