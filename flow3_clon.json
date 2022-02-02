@@ -1,0 +1,255 @@
+[
+    {
+        "id": "4b9e493ba659f2cb",
+        "type": "tab",
+        "label": "Flow 3 Hugo_clonado",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "304951bc1ba4cc61",
+        "type": "mqtt in",
+        "z": "4b9e493ba659f2cb",
+        "name": "",
+        "topic": "sic/flow3/temp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "edd3004a.11da88",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "805677e041d17f60"
+            ]
+        ]
+    },
+    {
+        "id": "805677e041d17f60",
+        "type": "json",
+        "z": "4b9e493ba659f2cb",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 380,
+        "y": 160,
+        "wires": [
+            [
+                "2fe7e85ae1591c4a",
+                "8e550de0ad2f6842",
+                "a727dc807f2475da"
+            ]
+        ]
+    },
+    {
+        "id": "2fe7e85ae1591c4a",
+        "type": "function",
+        "z": "4b9e493ba659f2cb",
+        "name": "",
+        "func": "msg.payload = msg.payload.id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 160,
+        "wires": [
+            [
+                "913abb675f4282c4"
+            ]
+        ]
+    },
+    {
+        "id": "8e550de0ad2f6842",
+        "type": "function",
+        "z": "4b9e493ba659f2cb",
+        "name": "",
+        "func": "msg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 200,
+        "wires": [
+            [
+                "c8869ae224fc0b36"
+            ]
+        ]
+    },
+    {
+        "id": "a727dc807f2475da",
+        "type": "function",
+        "z": "4b9e493ba659f2cb",
+        "name": "",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload = msg.payload.temp;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 240,
+        "wires": [
+            [
+                "fe76ddfa6f9da2bd"
+            ]
+        ]
+    },
+    {
+        "id": "913abb675f4282c4",
+        "type": "ui_text",
+        "z": "4b9e493ba659f2cb",
+        "group": "f0d692dacbc1b1a3",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Nombre",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 890,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c8869ae224fc0b36",
+        "type": "ui_gauge",
+        "z": "4b9e493ba659f2cb",
+        "name": "",
+        "group": "f0d692dacbc1b1a3",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-30",
+        "max": "45",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 900,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "fe76ddfa6f9da2bd",
+        "type": "ui_chart",
+        "z": "4b9e493ba659f2cb",
+        "name": "",
+        "group": "626ac7140fc92f1d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Historico de temperatura",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-30",
+        "ymax": "45",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 940,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b83750dea04df1ec",
+        "type": "ui_spacer",
+        "z": "4b9e493ba659f2cb",
+        "name": "spacer",
+        "group": "f0d692dacbc1b1a3",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "edd3004a.11da88",
+        "type": "mqtt-broker",
+        "name": "HiveMQ",
+        "broker": "35.157.158.119",
+        "port": "1883",
+        "clientid": "hugo-SIC-455",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f0d692dacbc1b1a3",
+        "type": "ui_group",
+        "name": "Valores actuales ",
+        "tab": "f691e83520185593",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "626ac7140fc92f1d",
+        "type": "ui_group",
+        "name": "Gráfica",
+        "tab": "f691e83520185593",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "f691e83520185593",
+        "type": "ui_tab",
+        "name": "nuevo flow 3 copiado",
+        "icon": "dashboard",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    }
+]
